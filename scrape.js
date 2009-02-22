@@ -1,4 +1,5 @@
 Ruby.require('open-uri')
+Johnson.require('datastore')
 
 Scrape = {
   uri: "twitter.com/statuses/replies/",
@@ -12,7 +13,14 @@ Scrape = {
                        Johnson.symbolize('http_basic_authentication'),
                        [this.username, this.password]
                       )
-    return Ruby.open(url, credentials).read()
+    return eval(Ruby.open(url, credentials).read())
   },
+
+  store: function(){
+    var retrieved = this.retrieve()
+    for(var reply in retrieved){
+      Ruby.puts(retrieved[reply]['text'])
+    }
+  }
 }
   
