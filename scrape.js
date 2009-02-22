@@ -10,7 +10,7 @@ Scrape = {
     var credentials =
         Ruby.Hash.send("[]",
                        Johnson.symbolize('http_basic_authentication'),
-                       Ruby.Array.send("[]", this.username, this.password)
+                       [this.username, this.password]
                       )
     return Ruby.open(url, credentials).read()
   },
