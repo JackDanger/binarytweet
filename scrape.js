@@ -1,5 +1,5 @@
 Ruby.require('open-uri')
-Johnson.require('datastore')
+Johnson.require('init')
 
 Scrape = {
   uri: "twitter.com/statuses/replies/",
