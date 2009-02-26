@@ -2,4 +2,6 @@
 Johnson.require('johnson/browser')
 Johnson.require('johnson/browser/jquery')
 Johnson.require('tojson')
-Johnson.require('flight')
+
+Flight = {configuration: 'db/config.json'}
+Johnson.require('db/flight')
