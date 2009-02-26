@@ -17,7 +17,7 @@ Okay, here's how it'll work: you twitter like so:
 	
 Or, (wait for it...)
 
-  @binarial 1
+	@binarial 1
 
 And that becomes part of your "binary tweetscape".
 Or "digital twitterstream".
