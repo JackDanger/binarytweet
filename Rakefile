@@ -1,6 +1,4 @@
 
-$:.unshift ''
-
 task :default => :test
 
 task :test do
