@@ -17,24 +17,35 @@ $.extend(Flight,
       // object or the path to a file containing one
       // Format: {'environment_name':
       //            {'adapter': 'sqlite3',
-      //             'database': 'my_db.sqlite'}
+      //             'database': 'db/my_db.sqlite'}
       //         }
 
-      if(!Flight.configuration)
-        throw("Flight.configuration is not defined")
+      var json_config
+      var parse_config = function(){
+        if(!Flight.configuration)
+          throw("Flight.configuration is not defined")
 
-      var json_config =
-        Flight.configuration && Flight.configuration.match(/\{|\}/) ?
-          Flight.configuration : eval("("+Ruby.File.read(Flight.configuration)+")")
+        if(json_config) return json_config
+        json_config = 
+          Flight.configuration && Flight.configuration.match(/\{|\}/) ?
+            Flight.configuration : eval("("+Ruby.File.read(Flight.configuration)+")")
+        return json_config
+      }
       return {
         environment:  function(){return Johnson.environment},
-        database:     function(){return json_config[Johnson.environment]['database']},
-        adapter:      function(){return json_config[Johnson.environment]['adapter']}
+        database:     function(){return parse_config()[Johnson.environment]['database']},
+        adapter:      function(){return parse_config()[Johnson.environment]['adapter']}
       }
     })()
 
     var connect = function(fn){
       if('sqlite3' == config.adapter()) return connect_sqlite3(fn);
+    }
+
+    var transaction = function(fn){
+      return connect(function(db){
+        return db.transaction(fn)
+      })
     }
 
     var connect_sqlite3 = function(fn){
@@ -98,11 +109,6 @@ $.extend(Flight,
 
       return record
     }
-
-    // create the database file if it doesn't exist
-    if('sqlite3' == config.adapter())
-      if(!Ruby.File.send("exists?", config.database()))
-        execute(Ruby.File.read('schema.sql'))
 
     // return a public object
     return {
