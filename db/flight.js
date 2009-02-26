@@ -112,7 +112,9 @@ $.extend(Flight,
 
     // return a public object
     return {
-      config: config,
+      execute:     execute,
+      transaction: transaction,
+      config:      config,
 
       create: function(model, attributes){
         return execute("INSERT INTO `"+model+"` "
