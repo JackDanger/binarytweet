@@ -10,11 +10,19 @@ Here's what you do: hit the "fork" button up above and then mess with the code. 
 
 ## What features do you have planned?
 
-* Well, we'd like to have some code.  If there's code next to the README then please update the README for me.
-* We want this to run under mod_rack/Passenger
-* Tests.  Helluvalot of tests.  Write some in Javscript!
-* Use the twitter api to read the @binarial account for folks sending updates to it.
+You want features?  Really? Why are you even reading this README?
+Okay, here's how it'll work: you twitter like so:
+
+	@binarial 0
+	
+Or, (wait for it...)
+
+  @binarial 1
+
+And that becomes part of your "binary tweetscape".
+Or "digital twitterstream".
+Or "time you'll never get back"
 
 ## Uh, why would you build this?
 
-Pshaw!  I haven't yet!  Note: if I've built this please update the README.
+Coding is fun. We have to remember that.
