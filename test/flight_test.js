@@ -76,5 +76,13 @@ jspec.describe("Flight", function() {
       })
     })
 
+    it("should understand complex conditions", function(){
+      transaction(function(){
+        setup()
+        records = Flight.find('tweets', {user: 'harmony', text: "what's Javascript?"})
+        expect(1).to("==", records.length)
+      })
+    })
+
   })
 });
