@@ -1,8 +1,8 @@
-Ruby.require('rubygems')
-Ruby.require('sqlite3')
+// Flight is an ultra-lightweight SQL ORM in javscript
+var Flight = (function(){
 
-
-var Record = (function(){
+  Ruby.require('rubygems')
+  Ruby.require('sqlite3')
 
   var db_file = ('test' == Johnson.environment) ? 'sqlite.test.db' : 'sqlite.web.db'
 
@@ -66,8 +66,13 @@ var Record = (function(){
     return record
   }
 
+  // create the database file if it doesn't exist
+  if(!Ruby.File.send("exists?", db_file)){
+    execute(Ruby.File.read('schema.sql'))
+  }
 
-  var publicObject = {
+  // return a public object
+  return {
 
     create: function(model, attributes){
       return execute("INSERT INTO `"+model+"` "
@@ -79,15 +84,6 @@ var Record = (function(){
       return records(model, "SELECT * FROM `"+model+"` "+attributesToConditions(attributes)+" LIMIT 1")
     }
   }
-
-  // create the database file if it doesn't exist
-  if(!Ruby.File.send("exists?", db_file)){
-    execute("create table users (name varchar(36) not null primary key)")
-    execute("create table tweets (text varchar(140) not null primary key"
-                              + ", user varchar(36) not null)")
-  }
-
-  return publicObject;
 
 })()
 
