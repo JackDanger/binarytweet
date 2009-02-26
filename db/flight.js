@@ -27,8 +27,9 @@ $.extend(Flight,
         Flight.configuration && Flight.configuration.match(/\{|\}/) ?
           Flight.configuration : eval("("+Ruby.File.read(Flight.configuration)+")")
       return {
-        database: function(){return json_config[Johnson.environment]['database']},
-        adapter:  function(){return json_config[Johnson.environment]['adapter']}
+        environment:  function(){return Johnson.environment},
+        database:     function(){return json_config[Johnson.environment]['database']},
+        adapter:      function(){return json_config[Johnson.environment]['adapter']}
       }
     })()
 

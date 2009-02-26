@@ -8,7 +8,11 @@ jspec.describe("Flight", function() {
     expect(Flight.create).to("have_constructor", Function);
   });
 
-  it("loads Flight config", function(){
+  it("loads Flight config environment", function(){
+    expect(Flight.config.environment()).to("==", 'test')
+  })
+
+  it("loads Flight config database", function(){
     expect(Flight.config.database()).to("==", 'sqlite.test.db')
   })
 });
