@@ -9,10 +9,10 @@ jspec.describe("Flight", function() {
   });
 
   it("loads Flight config environment", function(){
-    expect(Flight.config.environment()).to("==", 'test')
+    expect('test').to("==", Flight.config.environment())
   })
 
   it("loads Flight config database", function(){
-    expect(Flight.config.database()).to("==", 'sqlite.test.db')
+    expect('sqlite.test.db').to("==", Flight.config.database())
   })
 });
