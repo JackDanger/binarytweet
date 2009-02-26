@@ -3,7 +3,7 @@
 		'adapter':  'sqlite3',
 		'database': 'sqlite.production.db'
 	},
-	'testing': {
+	'test': {
 		'adapter':  'sqlite3',
 		'database': 'sqlite.test.db'
 	}

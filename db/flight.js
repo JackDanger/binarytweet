@@ -15,13 +15,17 @@ $.extend(Flight,
 
       // The Flight.configuration must be either a javascript
       // object or the path to a file containing one
-      // Format: {'development': {'adapter': 'sqlite3', 'database': 'my_db.sqlite'}}
+      // Format: {'environment_name':
+      //            {'adapter': 'sqlite3',
+      //             'database': 'my_db.sqlite'}
+      //         }
 
       if(!Flight.configuration)
         throw("Flight.configuration is not defined")
 
-      var json_config = Flight.configuration && Flight.configuration.match(/\{|\}/) ?
-                          Flight.configuration : eval(Ruby.File.read(Flight.configuration))
+      var json_config =
+        Flight.configuration && Flight.configuration.match(/\{|\}/) ?
+          Flight.configuration : eval("("+Ruby.File.read(Flight.configuration)+")")
       return {
         database: function(){return json_config[Johnson.environment]['database']},
         adapter:  function(){return json_config[Johnson.environment]['adapter']}
@@ -101,6 +105,7 @@ $.extend(Flight,
 
     // return a public object
     return {
+      config: config,
 
       create: function(model, attributes){
         return execute("INSERT INTO `"+model+"` "
