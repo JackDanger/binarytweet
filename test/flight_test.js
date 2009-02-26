@@ -50,6 +50,31 @@ jspec.describe("Flight", function() {
         }
       })
     })
+  })
+
+  jspec.describe("finding records", function(){
+
+    var setup = function(){
+      Flight.create('users',  {name: 'harmony'})
+      Flight.create('tweets', {user: 'harmony', text: 'I love waffles'})
+      Flight.create('tweets', {user: 'harmony', text: "what's Javascript?"})
+    }
+
+    it("should find all records by default", function(){
+      transaction(function(){
+        setup()
+        records = Flight.find('tweets')
+        expect(2).to("==", records.length)
+      })
+    })
+
+    it("should understand conditions", function(){
+      transaction(function(){
+        setup()
+        records = Flight.find('tweets', {text: "I love waffles"})
+        expect(1).to("==", records.length)
+      })
+    })
 
   })
 });
