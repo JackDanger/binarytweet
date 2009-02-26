@@ -42,12 +42,6 @@ $.extend(Flight,
       if('sqlite3' == config.adapter()) return connect_sqlite3(fn);
     }
 
-    var transaction = function(fn){
-      return connect(function(db){
-        return db.transaction(fn)
-      })
-    }
-
     var connect_sqlite3 = function(fn){
       Ruby.require('rubygems')
       Ruby.require('sqlite3')
@@ -113,7 +107,6 @@ $.extend(Flight,
     // return a public object
     return {
       execute:     execute,
-      transaction: transaction,
       config:      config,
 
       create: function(model, attributes){
