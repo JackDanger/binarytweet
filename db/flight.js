@@ -9,6 +9,12 @@ var Flight = Flight || {}
 $.extend(Flight,
   function(){
 
+    var debug = function(){
+      if(!Flight.debug) return
+      for (var i=0;i<arguments.length;++i)
+        Ruby.puts(arguments[i])
+    }
+
     var config = (function(){
 
       if(!Johnson.environment) Johnson.environment = 'production'
@@ -56,6 +62,7 @@ $.extend(Flight,
       if(this.cachedFields[model])
         return this.cachedFields[model]
 
+      debug("Retrieving Schema for: "+model)
       var schema = connect(function(db){ return db.table_info(model) });
       var fields = []
       for (var row in schema) fields.push(row["name"])
@@ -65,7 +72,7 @@ $.extend(Flight,
     }
 
     var execute = function(sql){
-      Ruby.puts("SQL: \""+sql+"\"")
+      debug("SQL: \""+sql+"\"")
       return connect(function(db){
         return db.execute(sql)
       })

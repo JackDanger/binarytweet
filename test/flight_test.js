@@ -1,5 +1,7 @@
 Johnson.require("test_helper")
 
+Flight.debug = false
+
 // rollback transactions in this test
 function transaction(fn){
   // FIXME: why doesn't this work?  Sqlite3 simply isn't rolling back }:(
@@ -18,8 +20,6 @@ function transaction(fn){
 }
 
 jspec.describe("Flight", function() {
-
-  Johnson.require("init");
 
   it("loads Flight", function() {
     expect(Flight.create).to("have_constructor", Function);

@@ -5,3 +5,6 @@ Ruby.gem('taka')
 
 Johnson.require("test/jspec/helper");
 Johnson.require("test/jspec/jspec");
+
+// load this app
+Johnson.require("init");
