@@ -4,14 +4,16 @@ Ruby.require('sqlite3')
 
 var Record = (function(){
 
-  if(!Ruby.File.send("exists?", 'sqlite.db')){
+  var db_file = ('test' == Johnson.environment) ? 'sqlite.test.db' : 'sqlite.web.db'
+
+  if(!Ruby.File.send("exists?", db_file)){
     execute("create table users (name varchar(36) not null primary key)")
     execute("create table tweets (text varchar(140) not null primary key"
                               + ", user varchar(36) not null)")
   }
 
   var connect = function(fn){
-    var db = Ruby.SQLite3.Database.new('sqlite.db')
+    var db = Ruby.SQLite3.Database.new(db_file)
     result = fn(db)
     db.close()
     return result;

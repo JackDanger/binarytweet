@@ -1,3 +1,4 @@
+Johnson.environment = 'test'
 Ruby.require('rubygems')
 Ruby.gem('nokogiri')
 Ruby.gem('taka')
