@@ -1,5 +1,22 @@
 Johnson.require("test_helper")
 
+// rollback transactions in this test
+function transaction(fn){
+  // FIXME: why doesn't this work?  Sqlite3 simply isn't rolling back }:(
+  // Flight.connect(function(db){
+  //   db.transaction()
+  //   fn(db)
+  //   db.rollback()
+  // })
+
+  // POOR MAN'S TRANSACTIONS
+  Ruby.require('fileutils')
+  Ruby.FileUtils.cp(Flight.config.database(), Flight.config.database()+'original')
+  ret = fn()
+  Ruby.FileUtils.mv(Flight.config.database()+'original', Flight.config.database())
+  return ret
+}
+
 jspec.describe("Flight", function() {
 
   Johnson.require("init");
@@ -19,9 +36,18 @@ jspec.describe("Flight", function() {
   jspec.describe("creating records", function(){
 
     it("should save a new user record", function(){
-      Flight.transaction(function(){
-        Flight.create('users', {name: 'guy'})
-        expect("guy").to("==", Flight.find('users')[0].name)
+      transaction(function(){
+        Flight.create('users', {name: 'BruceCampbell'})
+        expect("BruceCampbell").to("==", Flight.find('users')[0].name)
+      })
+    })
+
+    it("should not save a user record if name is missing", function(){
+      transaction(function(){
+        try{Flight.create('users')}
+        catch(err){
+          expect("SQLite3::SQLException").to("==", err.class().toString())
+        }
       })
     })
 
