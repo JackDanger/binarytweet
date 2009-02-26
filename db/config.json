@@ -1,10 +1,10 @@
 {
 	'production': {
 		'adapter':  'sqlite3',
-		'database': 'sqlite.production.db'
+		'database': 'db/sqlite.production.db'
 	},
 	'test': {
 		'adapter':  'sqlite3',
-		'database': 'sqlite.test.db'
+		'database': 'db/sqlite.test.db'
 	}
 }
