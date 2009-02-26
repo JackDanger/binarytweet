@@ -1,6 +1,7 @@
 
 task :default => :test
 
+desc "Run the jspec test suite"
 task :test do
 
   # FIXME: why is it so hard to add Johnson to the load path?
