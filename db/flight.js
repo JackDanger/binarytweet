@@ -126,7 +126,7 @@ $.extend(Flight,
       find: function(model, attributes, limit){
         limit = limit ? ' LIMIT '+limit : ''
         instantiated = records(model, "SELECT * FROM `"+model+"` "+attributesToConditions(attributes)+limit)
-        return ([] == instantiated) ? false : instantiated;
+        return instantiated.length ? instantiated : false
       }
     }
 

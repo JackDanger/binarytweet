@@ -107,7 +107,7 @@ jspec.describe("TESTING Flight", function() {
       })
     })
 
-    it("should return null if nothing was found", function(){
+    it("should return false if nothing was found", function(){
       transaction(function(){
         records = Flight.find('tweets', {text: "never posted"})
         expect(false).to("==", records)
