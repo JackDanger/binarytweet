@@ -7,19 +7,30 @@ function transaction(fn){
   // FIXME: why doesn't this work?  Sqlite3 simply isn't rolling back }:(
   // Flight.connect(function(db){
   //   db.transaction()
-  //   fn(db)
+  //   try{
+  //     fn(db)
+  //   }catch(err){
+  //     jspec.logger(jspec.FAILURE, err + ' (ERROR) ')
+  //   }
   //   db.rollback()
   // })
 
   // POOR MAN'S TRANSACTIONS
   Ruby.require('fileutils')
   Ruby.FileUtils.cp(Flight.config.database(), Flight.config.database()+'original')
-  ret = fn()
+
+  try{
+    ret = fn()
+  }catch(err){
+    jspec.logger(jspec.FAILURE, err.toString() + ' (ERROR) ')
+    // throw(err)
+  }
+
   Ruby.FileUtils.mv(Flight.config.database()+'original', Flight.config.database())
   return ret
 }
 
-jspec.describe("Flight", function() {
+jspec.describe("TESTING Flight", function() {
 
   it("loads Flight", function() {
     expect(Flight.create).to("have_constructor", Function);
@@ -30,7 +41,7 @@ jspec.describe("Flight", function() {
   })
 
   it("loads Flight config database", function(){
-    expect('sqlite.test.db').to("==", Flight.config.database())
+    expect('db/sqlite.test.db').to("==", Flight.config.database())
   })
 
   jspec.describe("creating records", function(){
@@ -50,6 +61,26 @@ jspec.describe("Flight", function() {
         }
       })
     })
+
+    it("should return the instantiated record", function(){
+      transaction(function(){
+        expect('somthin').to("==",
+          Flight.create(
+            'tweets', {text: 'somthin', user: 'bojangles'}
+          ).text
+        )
+      })
+    })
+
+    it("should return a Flight record", function(){
+      transaction(function(){
+        expect(true).to("==",
+          Flight.create(
+            'tweets', {text: 'somthin', user: 'bojangles'}
+          ).isFlightRecord
+        )
+      })
+    })
   })
 
   jspec.describe("finding records", function(){
@@ -65,6 +96,14 @@ jspec.describe("Flight", function() {
         setup()
         records = Flight.find('tweets')
         expect(2).to("==", records.length)
+      })
+    })
+
+    it("should accept a limit", function(){
+      transaction(function(){
+        setup()
+        records = Flight.find('tweets', {}, 1)
+        expect(1).to("==", records.length)
       })
     })
 

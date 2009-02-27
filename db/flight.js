@@ -117,13 +117,15 @@ $.extend(Flight,
       config:      config,
 
       create: function(model, attributes){
-        return execute("INSERT INTO `"+model+"` "
-                       +" (`"+keys(attributes).join('`, `')+"`) "
-                       +" VALUES (\""+values(attributes).join('", "')+"\")")
+        execute("INSERT INTO `"+model+"` "
+               +" (`"+keys(attributes).join('`, `')+"`) "
+               +" VALUES (\""+values(attributes).join('", "')+"\")")
+        return $.extend(attributes, {model: model, isFlightRecord: true})
       },
 
-      find: function(model, attributes){
-        return records(model, "SELECT * FROM `"+model+"` "+attributesToConditions(attributes)+" LIMIT 1")
+      find: function(model, attributes, limit){
+        limit = limit && ' LIMIT '+limit
+        return records(model, "SELECT * FROM `"+model+"` "+attributesToConditions(attributes)+limit)
       }
     }
 
