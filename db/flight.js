@@ -104,7 +104,7 @@ $.extend(Flight,
     }
 
     var instantiateRecord = function(model, row){
-      var record = {}
+      var record = {model: model, isFlightRecord: true}
       for(var i=0; i<row.length(); i++)
         record[fields(model)[i]] = row[i]
 
