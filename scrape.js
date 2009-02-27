@@ -2,7 +2,8 @@ Ruby.require('open-uri')
 Johnson.require('init')
 
 
-var bogus_reply = '[
+var bogus_reply = ""+<r><![CDATA[
+[
   {
     "user": {
       "name": "Jack Danger Canty",
@@ -25,7 +26,8 @@ var bogus_reply = '[
     "in_reply_to_screen_name": "binarial",
     "created_at": "Sat Feb 21 17:57:43 +0000 2009"
   }
-]'
+]
+]]></r>;
 
 
 Scrape = (function(){
@@ -34,6 +36,7 @@ Scrape = (function(){
   var password = Ruby.ENV['TWITTER_PASSWORD']
 
   var retrieve = function(){
+    return eval(bogus_reply) // FIXME: REMOVEME
     var url = 'http://'+uri+username+'.json';
     var credentials =
         Ruby.Hash.send("[]",
@@ -44,9 +47,13 @@ Scrape = (function(){
   }
 
   var run = function(){
+    Flight.debug = true
     var retrieved = retrieve()
-    for(var reply in retrieved){
-      Ruby.puts($.toJSON(retrieved))
+    for each(var reply in retrieved){
+      user  = {name: reply.user.screen_name}
+      tweet = {user: reply.user.screen_name, text: reply.text}
+      Flight.find('users', user)   || Flight.create('users', user)
+      Flight.find('tweets', tweet) || Flight.create('tweets', tweet)
     }
   }
   return {
