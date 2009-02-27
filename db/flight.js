@@ -100,7 +100,7 @@ $.extend(Flight,
       ret = []
       for(var row in execute(sql))
         ret.push(instantiateRecord(model, row))
-      return ret;
+      return ret
     }
 
     var instantiateRecord = function(model, row){
@@ -125,7 +125,8 @@ $.extend(Flight,
 
       find: function(model, attributes, limit){
         limit = limit ? ' LIMIT '+limit : ''
-        return records(model, "SELECT * FROM `"+model+"` "+attributesToConditions(attributes)+limit)
+        instantiated = records(model, "SELECT * FROM `"+model+"` "+attributesToConditions(attributes)+limit)
+        return ([] == instantiated) ? false : instantiated;
       }
     }
 

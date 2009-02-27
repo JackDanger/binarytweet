@@ -99,6 +99,21 @@ jspec.describe("TESTING Flight", function() {
       })
     })
 
+    it("should return records as proper objects", function(){
+      transaction(function(){
+        setup()
+        record = Flight.find('tweets')[0]
+        expect(true).to("==", record.isFlightRecord)
+      })
+    })
+
+    it("should return null if nothing was found", function(){
+      transaction(function(){
+        records = Flight.find('tweets', {text: "never posted"})
+        expect(false).to("==", records)
+      })
+    })
+
     it("should accept a limit", function(){
       transaction(function(){
         setup()
