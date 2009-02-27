@@ -1,4 +1,4 @@
-Johnson.require("test_helper")
+Johnson.require(Ruby.File.dirname(__FILE__)+"/test_helper")
 
 Flight.debug = false
 

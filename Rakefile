@@ -9,8 +9,6 @@ task :test do
 
   tests = Dir["test/*_test.js"].map
   required = [
-    " -I #{File.dirname(__FILE__)}",
-    " -I #{File.join(File.dirname(__FILE__), 'test')}",
     " -I #{johnson_path}",
     " -r rubygems"
     ]

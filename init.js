@@ -5,7 +5,9 @@ for (var dir in Ruby["$LOAD_PATH"])
   if(/johnson-[\d-\.]+\/lib$/.test(dir)) break
 dir = dir.split('/'); dir.pop();
 Ruby["$LOAD_PATH"].unshift(dir.join("/"))
-Ruby["$LOAD_PATH"].unshift('.')
+
+// Adding the app root
+Ruby["$LOAD_PATH"].unshift(Ruby.File.dirname(__FILE__))
 
 Johnson.require('johnson/browser')
 Johnson.require('johnson/browser/jquery')
