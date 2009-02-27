@@ -66,7 +66,7 @@ jspec.describe("TESTING Flight", function() {
       transaction(function(){
         expect('somthin').to("==",
           Flight.create(
-            'tweets', {text: 'somthin', user: 'bojangles'}
+            'tweets', {text: 'somthin', user: 'bojangles', id: 7}
           ).text
         )
       })
@@ -76,7 +76,7 @@ jspec.describe("TESTING Flight", function() {
       transaction(function(){
         expect(true).to("==",
           Flight.create(
-            'tweets', {text: 'somthin', user: 'bojangles'}
+            'tweets', {text: 'somthin', user: 'bojangles', id: 7}
           ).isFlightRecord
         )
       })
@@ -87,8 +87,8 @@ jspec.describe("TESTING Flight", function() {
 
     var setup = function(){
       Flight.create('users',  {name: 'harmony'})
-      Flight.create('tweets', {user: 'harmony', text: 'I love waffles'})
-      Flight.create('tweets', {user: 'harmony', text: "what's Javascript?"})
+      Flight.create('tweets', {user: 'harmony', text: 'I love waffles', id: 4})
+      Flight.create('tweets', {user: 'harmony', text: "what's Javascript?", id: 17})
     }
 
     it("should find all records by default", function(){

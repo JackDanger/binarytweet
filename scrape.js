@@ -36,7 +36,7 @@ Scrape = (function(){
   var password = Ruby.ENV['TWITTER_PASSWORD']
 
   var retrieve = function(){
-    return eval(bogus_reply) // FIXME: REMOVEME
+    // return eval(bogus_reply) // FIXME: REMOVEME
     var url = 'http://'+uri+username+'.json';
     var credentials =
         Ruby.Hash.send("[]",
@@ -51,7 +51,7 @@ Scrape = (function(){
     var retrieved = retrieve()
     for each(var reply in retrieved){
       user  = {name: reply.user.screen_name}
-      tweet = {user: reply.user.screen_name, text: reply.text}
+      tweet = {user: reply.user.screen_name, text: reply.text, id: reply.id}
       Flight.find('users', user)   || Flight.create('users', user)
       Flight.find('tweets', tweet) || Flight.create('tweets', tweet)
     }
