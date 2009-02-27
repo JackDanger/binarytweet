@@ -13,13 +13,9 @@ color = function(hue, fn, binding){
   }
 
   return function(){
-    change(hue)
-    try {
-      ret = fn.apply(binding, arguments)
-    }
-    finally {
-      change('clear')
-    }
+              change(hue)
+    try     { ret = fn.apply(binding, arguments) }
+    finally { change('clear') }
     return ret
   }
 }
