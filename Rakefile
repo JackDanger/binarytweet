@@ -23,7 +23,5 @@ end
 desc "Retrieve @binarial replies from twitter api and store new ones"
 task :retrieve do
 
-  cmd = "johnson -r scrape.js -e 'Scrape.run()'"
-  puts cmd
-  system cmd
+  system "johnson -r scrape.js -e 'Scrape.run()'"
 end
