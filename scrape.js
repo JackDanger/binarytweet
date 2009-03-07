@@ -36,7 +36,6 @@ Scrape = (function(){
   var password = Ruby.ENV['TWITTER_PASSWORD']
 
   var retrieve = function(){
-    // return eval(bogus_reply) // FIXME: REMOVEME
     var url = 'http://'+uri+username+'.json';
     var credentials =
         Ruby.Hash.send("[]",
