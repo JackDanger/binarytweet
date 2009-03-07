@@ -1,4 +1,7 @@
 
 Jack.Action(/^\/$/,function() {
-  return render('home').call()
+
+  var tweets = Flight.find('tweets', {}, 10)
+
+  return render('home').call({tweets: tweets})
 });

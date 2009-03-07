@@ -1,1 +1,17 @@
-Now: <%= new Date() %>
+<html>
+	<head>
+		<title>Binary Tweet - the absurd conclusion of internet publishing</title>
+	</head>
+	<body>
+		<div id="statuses">
+			<% for each (var tweet in this.tweets) { %>
+				<div id="tweet_<%= tweet.id %>" class="tweet">
+			  	<%= tweet.text %>
+					<span class="user">
+						<%= tweet.user %>
+					</span>
+				</div>
+			<% } %>
+		</div>
+	</body>
+</html>
