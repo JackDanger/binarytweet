@@ -1,0 +1,37 @@
+body {
+  font-size: 1.5em;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+}
+
+#container {
+  width: 600px;
+  margin: 0 auto;
+  background-color: #222;
+  border-left:  5px solid #444;
+  border-right: 5px solid #444;
+  border-bottom: 5px solid #444;
+}
+
+#tweets {
+  margin: 0 auto;
+  width: 500px;
+  text-align: center;
+  color: #FFF;
+}
+.tweet span {
+  display: block;
+  width: 245px;
+  float: left;
+}
+.tweet .user {
+  margin-top: 1.5em;
+  font-family: Garabond, "Palatino Linotype", Georgia; 
+  clear: left;
+}
+.tweet .text {
+  padding-top: -2.5em;
+  font-size: 5em;
+  font-family: Helvetica;
+}

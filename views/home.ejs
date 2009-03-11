@@ -1,15 +1,18 @@
 <html>
 	<head>
 		<title>Binary Tweet - the absurd conclusion of internet publishing</title>
+		<link rel="stylesheet" href="/style.css" type="text/css" />
 	</head>
 	<body>
 		<div id="container">
-			<div id="statuses">
+			<div id="tweets">
 				<% for each (var tweet in this.tweets) { %>
 					<div id="tweet_<%= tweet.id %>" class="tweet">
-				  	<%= tweet.text %>
 						<span class="user">
 							<%= tweet.user %>
+						</span>
+						<span class="text">
+				  		<%= tweet.text.replace("@binarial", '') %>
 						</span>
 					</div>
 				<% } %>
