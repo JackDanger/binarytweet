@@ -9,11 +9,11 @@ Jack.Action(/^\/$/,function() {
 
 // low-priority route for serving public files
 Jack.Action(/.*/, function(env, params) {
-  var filename = Ruby.File.dirname(__FILE__)+'/public'+env['PATH_INFO']
+  var filename = Jack.root+'/public'+env['PATH_INFO']
   return Ruby.File.send("exist?", filename) ?
     [
       200,
-      {'Content-Type': 'image/jpeg'},
+      {'Content-Type': Ruby.Rack.Mime.mime_type(filename.match(/(\.[a-zA-Z0-9]+)$/)[1])},
       Ruby.File.read(filename)
     ] :
     Jack.not_found()
