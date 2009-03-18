@@ -102,8 +102,8 @@ $.extend(Flight,
       if(options.joins)   sql = sql + ' '+options.joins
       if(attributes)      sql = sql + attributesToConditions(attributes)
       if(options.group)   sql = sql + ' GROUP BY '+options.group
+      if(options.order)   sql = sql + ' ORDER BY '+options.order
       if(options.limit)   sql = sql + ' LIMIT '+options.limit
-      Ruby.puts(sql)
       return sql
     }
 

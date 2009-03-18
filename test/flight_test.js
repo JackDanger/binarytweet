@@ -122,6 +122,15 @@ jspec.describe("TESTING Flight", function() {
       })
     })
 
+    it("should be able to order results", function(){
+      transaction(function(){
+        setup()
+        forward  = Flight.find('tweets', {}, {order: 'id asc'})
+        reverse  = Flight.find('tweets', {}, {order: 'id desc'})
+        expect(reverse[0].text).to("==", forward.reverse()[0].text)
+      })
+    })
+
     it("should understand conditions", function(){
       transaction(function(){
         setup()
