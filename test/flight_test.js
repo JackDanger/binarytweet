@@ -117,7 +117,7 @@ jspec.describe("TESTING Flight", function() {
     it("should accept a limit", function(){
       transaction(function(){
         setup()
-        records = Flight.find('tweets', {}, 1)
+        records = Flight.find('tweets', {}, {limit: 1})
         expect(1).to("==", records.length)
       })
     })

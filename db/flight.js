@@ -96,6 +96,17 @@ $.extend(Flight,
       return where+conditions.join(" AND ")
     }
 
+    var FinderSql = function(model, attributes, options){
+      sql  = ' SELECT '+(options.select || '*')
+      sql  = sql + ' FROM `'+model+'` '
+      if(options.joins)   sql = sql + ' '+options.joins
+      if(attributes)      sql = sql + attributesToConditions(attributes)
+      if(options.group)   sql = sql + ' GROUP BY '+options.group
+      if(options.limit)   sql = sql + ' LIMIT '+options.limit
+      Ruby.puts(sql)
+      return sql
+    }
+
     var records = function(model, sql){
       ret = []
       for(var row in execute(sql))
@@ -123,9 +134,9 @@ $.extend(Flight,
         return $.extend(attributes, {model: model, isFlightRecord: true})
       },
 
-      find: function(model, attributes, limit){
-        limit = limit ? ' LIMIT '+limit : ''
-        instantiated = records(model, "SELECT * FROM `"+model+"` "+attributesToConditions(attributes)+limit)
+      find: function(model, attributes, options){
+        
+        instantiated = records(model, FinderSql(model, attributes || {}, options || {}))
         return instantiated.length ? instantiated : false
       }
     }
