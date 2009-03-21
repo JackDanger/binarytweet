@@ -19,7 +19,7 @@
               <a href="http://twitter.com/<%= tweet.user %>">@<%= tweet.user %></a>
             </span>
             <span class="text">
-              <%= tweet.text.replace("@binarial", '') %>
+              <a href="http://twitter.com/<%= tweet.user %>/status/<%= tweet.id %>"><%= tweet.text.replace("@binarial", '') %></a>
             </span>
           </div>
         <% } %>

@@ -44,10 +44,12 @@ body {
   font-family: Garabond, "Palatino Linotype", Georgia;
   text-decoration: none;
 }
-.tweet .text {
+.tweet .text a {
   padding-top: -2.5em;
+  color: #FFF;
   font-size: 5em;
   font-family: Helvetica;
+  text-decoration: none;
 }
 .clearer {
   float: left;
