@@ -5,9 +5,11 @@ God.watch do |w|
   w.name = "binarytweet"
   w.interval = 30.seconds
   w.pid_file = File.join(dir, "rack.#{port}.pid")
-  w.start = "cd #{dir}; jack web.js -p #{port}"
-  w.stop    = "kill -9 `cat #{w.pid_file}`"
-  w.restart = "kill -9 `cat #{w.pid_file}`; cd #{dir}; jack web.js -p #{port}"
+  start = "cd #{dir}; jack #{dir}/web.js -p #{port}"
+  stop    = "ps x | grep  binarytweet.com | grep -v grep| awk '{print $1}'| xargs sudo kill -9"
+  w.start = start
+  w.stop  = stop
+  w.restart = "#{stop}; #{start}"
   w.uid = 'www'
   w.gid = 'www'
   w.start_if do |start|
