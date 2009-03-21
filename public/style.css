@@ -41,6 +41,7 @@ body {
 .tweet .user a {
   color: #FFF;
   padding-top: 1.5em;
+  padding-right: 2em;
   font-family: Garabond, "Palatino Linotype", Georgia;
   text-decoration: none;
 }
@@ -50,6 +51,9 @@ body {
   font-size: 5em;
   font-family: Helvetica;
   text-decoration: none;
+}
+a img {
+  border: none;
 }
 .clearer {
   float: left;

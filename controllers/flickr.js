@@ -24,6 +24,9 @@ Jack.Action(/^\/flickr\.js/, function(){
                 (size ? "_" + size : '') +
                 ".jpg"
       }
+      photo_href = function(photo){
+        return  "http://www.flickr.com/photos/"+photo.owner+"/"+photo.id
+      }
       $.getJSON(
           "http://api.flickr.com/services/rest/?"+
           "method=flickr.photos.search"+
@@ -35,8 +38,12 @@ Jack.Action(/^\/flickr\.js/, function(){
             destination.each(function(){
               var photo = photos.shift()
               $(this).append(
-                $("<img/>")
-                  .attr("src", photo_src(photo, 's'))
+                $('<a>')
+                  .attr('href', photo_href(photo))
+                  .append(
+                  $("<img/>")
+                    .attr("src", photo_src(photo, 's'))
+                  )
               )
             })
           }
