@@ -1,7 +1,7 @@
 
 Jack.Action(/^\/$/,function() {
 
-  var tweets = Flight.find('tweets', {}, 10)
+  var tweets = Flight.find('tweets', {}, {limit: 10, order: 'tweets.id DESC'})
 
   return render('home').call({tweets: tweets})
 })
