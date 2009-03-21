@@ -37,10 +37,12 @@ body {
   display: inline;
   width: 215px;
 }
-.tweet .user {
-  color: #AAA;
+.tweet .user,
+.tweet .user a {
+  color: #FFF;
   padding-top: 1.5em;
-  font-family: Garabond, "Palatino Linotype", Georgia; 
+  font-family: Garabond, "Palatino Linotype", Georgia;
+  text-decoration: none;
 }
 .tweet .text {
   padding-top: -2.5em;

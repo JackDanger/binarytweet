@@ -16,7 +16,7 @@
         <% for each (var tweet in this.tweets) { %>
           <div id="tweet_<%= tweet.id %>" class="tweet <%= tweet.text == '0' ? 'zero' : 'one' %>">
             <span class="user">
-              <%= tweet.user %>
+              <a href="http://twitter.com/<%= tweet.user %>">@<%= tweet.user %></a>
             </span>
             <span class="text">
               <%= tweet.text.replace("@binarial", '') %>
