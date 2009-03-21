@@ -7,6 +7,11 @@
   </head>
   <body>
     <div id="container">
+      <div id="banner">
+        <span>
+          Tweet a '0' or '1' to @binarial.  Congrats, you're micropublished.
+        </span>
+      </div>
       <div id="tweets">
         <% for each (var tweet in this.tweets) { %>
           <div id="tweet_<%= tweet.id %>" class="tweet <%= tweet.text == '0' ? 'zero' : 'one' %>">
