@@ -21,17 +21,19 @@ body {
   color: #FFF;
 }
 .tweet span {
-  display: block;
-  width: 245px;
-  float: left;
+  display: inline;
+  width: 215px;
 }
 .tweet .user {
-  margin-top: 1.5em;
+  padding-top: 1.5em;
   font-family: Garabond, "Palatino Linotype", Georgia; 
-  clear: left;
 }
 .tweet .text {
   padding-top: -2.5em;
   font-size: 5em;
   font-family: Helvetica;
+}
+.clearer {
+  float: left;
+  clear: both;
 }
