@@ -15,6 +15,9 @@ body {
 
 #banner {
   width: 608px;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  position: relative;
   background-color: #FF0;
   border-left:   1px solid #AA0;
   border-right:  1px solid #AA0;
@@ -26,6 +29,11 @@ body {
   font-size: 0.75em;
   line-height: 2em;
   color: #008;
+}
+#banner a.fork {
+  position: absolute;
+  right: 1em;
+  top: 0;
 }
 
 #tweets {
