@@ -28,7 +28,7 @@ Jack.Action(/^\/flickr\.js/, function(){
           "http://api.flickr.com/services/rest/?"+
           "method=flickr.photos.search"+
           "&api_key="+API_KEY+
-          "&tags="+randomizeArray(tags.split(",")).slice(10).join(",")+
+          "&tags="+randomizeArray(tags.split(","))[0]+
           "&format=json&jsoncallback=?",
           function (data) {
             var photos = randomizeArray(data.photos.photo)
