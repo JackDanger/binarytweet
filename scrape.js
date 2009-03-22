@@ -59,3 +59,5 @@ Scrape = (function(){
     run: run
   }
 })()
+
+Scrape.run()
