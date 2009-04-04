@@ -49,7 +49,7 @@ Scrape = (function(){
     Flight.debug = true
     var retrieved = retrieve()
     for each(var reply in retrieved){
-      if(reply.text == '0' || reply.text == '1'){
+      if(/^@[0-9a-zA-Z]+ (0|1)\s*$/.test(reply.text)){
         user  = {name: reply.user.screen_name}
         tweet = {user: reply.user.screen_name, text: reply.text, id: reply.id}
         Flight.find('users', user)   || Flight.create('users', user)
