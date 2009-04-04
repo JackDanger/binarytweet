@@ -49,10 +49,12 @@ Scrape = (function(){
     Flight.debug = true
     var retrieved = retrieve()
     for each(var reply in retrieved){
-      user  = {name: reply.user.screen_name}
-      tweet = {user: reply.user.screen_name, text: reply.text, id: reply.id}
-      Flight.find('users', user)   || Flight.create('users', user)
-      Flight.find('tweets', tweet) || Flight.create('tweets', tweet)
+      if(reply.text == '0' || reply.text == '1'){
+        user  = {name: reply.user.screen_name}
+        tweet = {user: reply.user.screen_name, text: reply.text, id: reply.id}
+        Flight.find('users', user)   || Flight.create('users', user)
+        Flight.find('tweets', tweet) || Flight.create('tweets', tweet)
+      }
     }
   }
   return {
